@@ -34,6 +34,12 @@ jobs:
     - run: file ./bin/phantomjs
     - run: ./bin/phantomjs --version
     - run: make check
+      
+    - name : Upload artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: phantomjs_amd64_linux
+        path: ./bin/phantomjs
 
 #   amd64_linux_gcc:
 #     runs-on: ubuntu-18.04
