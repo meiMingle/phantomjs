@@ -8,17 +8,17 @@ on:
     
 jobs:
 
-  codestyle:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v2
-    - run: brew install clang-format
-      name: Install clang-format
-    - run: clang-format --version
-    - run: bash ./tools/format-code.sh
-      name: Run code formatter
-    - run: git diff --quiet HEAD
-      name: Check if the styling guide is followed
+#   codestyle:
+#     runs-on: macos-latest
+#     steps:
+#     - uses: actions/checkout@v2
+#     - run: brew install clang-format
+#       name: Install clang-format
+#     - run: clang-format --version
+#     - run: bash ./tools/format-code.sh
+#       name: Run code formatter
+#     - run: git diff --quiet HEAD
+#       name: Check if the styling guide is followed
 
   amd64_linux_clang:
     runs-on: ubuntu-18.04
@@ -35,18 +35,18 @@ jobs:
     - run: ./bin/phantomjs --version
     - run: make check
 
-  amd64_linux_gcc:
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - run: sudo apt -y -qq update
-    - run: sudo apt install -y g++ cmake qt5-default libqt5webkit5-dev python
-      name: Install requirements
-    - run: g++ --version && cmake --version && qmake --version && python --version
-      name: Display tools version
-    - run: ./configure
-    - run: make
-    - run: file ./bin/phantomjs
-    - run: ./bin/phantomjs --version
-    - run: make check
+#   amd64_linux_gcc:
+#     runs-on: ubuntu-18.04
+#     steps:
+#     - uses: actions/checkout@v2
+#     - run: sudo apt -y -qq update
+#     - run: sudo apt install -y g++ cmake qt5-default libqt5webkit5-dev python
+#       name: Install requirements
+#     - run: g++ --version && cmake --version && qmake --version && python --version
+#       name: Display tools version
+#     - run: ./configure
+#     - run: make
+#     - run: file ./bin/phantomjs
+#     - run: ./bin/phantomjs --version
+#     - run: make check
 
