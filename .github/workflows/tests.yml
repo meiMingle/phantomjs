@@ -20,39 +20,45 @@ jobs:
 #     - run: git diff --quiet HEAD
 #       name: Check if the styling guide is followed
 
-  amd64_linux_clang:
+#   amd64_linux_clang:
+#     runs-on: ubuntu-18.04
+#     steps:
+#     - uses: actions/checkout@v2
+#     - run: sudo apt -y -qq update
+#     - run: sudo apt install -y clang cmake qt5-default libqt5webkit5-dev python
+#       name: Install requirements
+#     - run: clang++ --version && cmake --version && qmake --version && python --version
+#       name: Display tools version
+#     - run: CC=clang CXX=clang++ ./configure
+#     - run: make
+#     - run: file ./bin/phantomjs
+#     - run: ./bin/phantomjs --version
+#     - run: make check
+      
+#     - name : Upload artifact
+#       uses: actions/upload-artifact@master
+#       with:
+#         name: phantomjs_amd64_linux
+#         path: ./bin/phantomjs
+
+  amd64_linux_gcc:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - run: sudo apt -y -qq update
-    - run: sudo apt install -y clang cmake qt5-default libqt5webkit5-dev python
+    - run: sudo apt install -y g++ cmake qt5-default libqt5webkit5-dev python
       name: Install requirements
-    - run: clang++ --version && cmake --version && qmake --version && python --version
+    - run: g++ --version && cmake --version && qmake --version && python --version
       name: Display tools version
-    - run: CC=clang CXX=clang++ ./configure
+    - run: ./configure
     - run: make
     - run: file ./bin/phantomjs
     - run: ./bin/phantomjs --version
     - run: make check
-      
+    
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
         name: phantomjs_amd64_linux
         path: ./bin/phantomjs
-
-#   amd64_linux_gcc:
-#     runs-on: ubuntu-18.04
-#     steps:
-#     - uses: actions/checkout@v2
-#     - run: sudo apt -y -qq update
-#     - run: sudo apt install -y g++ cmake qt5-default libqt5webkit5-dev python
-#       name: Install requirements
-#     - run: g++ --version && cmake --version && qmake --version && python --version
-#       name: Display tools version
-#     - run: ./configure
-#     - run: make
-#     - run: file ./bin/phantomjs
-#     - run: ./bin/phantomjs --version
-#     - run: make check
 
